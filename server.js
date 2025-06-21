@@ -1,10 +1,8 @@
 import express from 'express';
 import { graphqlHTTP } from 'express-graphql';
-import schema from './schema/index.js';
-import connectDB from './utils/db.js';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import schema from './schema/schema.js';
+import connectDB from './config/db.js';
+import { API_URL } from './config/variable.js';
 
 const app = express();
 
@@ -19,5 +17,5 @@ app.use(`${API_URL}/graphql`, graphqlHTTP({
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}/graphql`);
+  console.log(`Server running on http://localhost:${PORT}${API_URL}/graphql`);
 });
